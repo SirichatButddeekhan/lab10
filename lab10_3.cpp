@@ -9,29 +9,27 @@
 using namespace std;
 
 int main(){
-    int count=0;
-    double sum=0;
-    double kum=0;
-   
-    ifstream source("score.txt");
-    string textline;
-    while(getline(source,textline)){
-	    sum=sum+stod(textline);
-	    kum=kum+ pow(stod(textline),2);
-	    count++;
-	  
-	} 
-	
+    int attemp=0;
+    float sum=0;
+    float sum_2=0;
+    float mean;
+    float standard=0;
+    ifstream fin("score.txt");
 
-	double mean=sum/count;
-	double stand;
-	stand=sqrt((kum/count)-pow(mean,2));
-	
-	
-	
+    string value;
+    while(getline(fin,value)){
+        sum = sum+stod(value);
+        sum_2 = sum_2 + pow(stod(value),2);
+        attemp ++;
+    }
+    mean = sum / attemp;
+    standard = pow((sum_2/attemp)-(pow(mean,2)),0.5);
+
+
+  
     
-    cout << "Number of data = "<<count<<"\n";
+    cout << "Number of data = "<<attemp<<"\n";
     cout << setprecision(3);
     cout << "Mean = "<<mean<<"\n";
-    cout << "Standard deviation = "<<stand<<"\n";
+    cout << "Standard deviation = "<<standard<<"\n";
 }
